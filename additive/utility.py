@@ -12,8 +12,9 @@ from scipy.ndimage import zoom, convolve
 import numpy as np
 import shutil
 from dask import bag
-from sh import wget
-dwget = delayed(wget)
+import matplotlib.pyplot as plt
+import sh
+dwget = delayed(sh.wget)
 
 def dfe(p):
     d = os.path.dirname(p)+"/"
@@ -94,3 +95,7 @@ def save_list_to_files(lst, files, root, extension, save_fun=joblib.dump, overwr
             else:
                 raise ValueError(f"overwrite parameter {overwrite} invalid")
         save_fun(item, out_path)
+
+
+def subplots(figsize=(10, 10), nrows=1, ncols=1, **kwargs):
+    return plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, **kwargs)
