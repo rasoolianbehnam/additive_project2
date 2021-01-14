@@ -45,6 +45,7 @@ profile, beg, end, index, h, cx, cy, r = 'profile beg end index h cx cy r'.split
 
 def get_rho95(rho95: pd.DataFrame):
     def fun(x): return x.r < rho95.r.loc[x.profile]
+
     return fun
 
 
@@ -203,6 +204,7 @@ def get_all_stats(file_name):
         images_features = pool.map(lambda x: x.run_all_tests(), images_features)
     return images_features
 
+
 # def main():
 #     with open('dataset/1000x/comparison_local_stats.pkl', 'rb') as f:
 #         circle_stats = pickle.load(f)
@@ -279,7 +281,7 @@ def get_all_stats(file_name):
 #
 #     # In[ ]:
 
-def plot_stats(data: pd.DataFrame, x_col = 'Measure',
-               y_col = 'Statistic Value($\mu m$)', hue_col='Variation', **kwargs):
-    return sns.catplot(data=data, kind='bar',  height=8.27, aspect=11.7/8.27,
-                x=x_col, y=y_col, hue=hue_col, **kwargs)
+def plot_stats(data: pd.DataFrame, x_col='Measure',
+               y_col='Statistic Value($\mu m$)', hue_col='Variation', aspect_ratio=1, **kwargs):
+    return sns.catplot(data=data, kind='bar', height=aspect_ratio*8.27, aspect=11.7 / 8.27,
+                       x=x_col, y=y_col, hue=hue_col, **kwargs)
