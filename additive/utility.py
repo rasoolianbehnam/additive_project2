@@ -1,4 +1,8 @@
 import os
+from datetime import datetime
+
+import matplotlib
+from cycler import cycler
 import pandas as pd
 import re
 import dask
@@ -99,3 +103,42 @@ def save_list_to_files(lst, files, root, extension, save_fun=joblib.dump, overwr
 
 def subplots(figsize=(10, 10), nrows=1, ncols=1, **kwargs):
     return plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, **kwargs)
+
+
+def custom_matplotlib_style():
+    s = {
+        "lines.linewidth": 2.0,
+        "axes.edgecolor": "#bcbcbc",
+        "patch.linewidth": 0.5,
+        "legend.fancybox": True,
+        "axes.prop_cycle": cycler('color', [
+            "#348ABD",
+            "#A60628",
+            "#7A68A6",
+            "#467821",
+            "#CF4457",
+            "#188487",
+            "#E24A33"
+        ]),
+        "axes.facecolor": "#eeeeee",
+        "axes.labelsize": "large",
+        "axes.grid": True,
+        "grid.linestyle": 'dashed',
+        "grid.color": 'black',
+        "grid.alpha": .2,
+        "patch.edgecolor": "#eeeeee",
+        "axes.titlesize": "x-large",
+        "svg.fonttype": "path",
+    }
+
+    matplotlib.rcParams.update(s)
+
+
+def timestamp_file(file, format="%Y%m%d-%H%M-"):
+    d, f = os.path.dirname(file), os.path.basename(file)
+    s = datetime.strftime(datetime.now(), format)
+    return os.path.join(d, s+f)
+
+
+def savefig(path, dpi=300):
+    plt.savefig(timestamp_file(path), bbox_inches="tight", dpi=dpi)
