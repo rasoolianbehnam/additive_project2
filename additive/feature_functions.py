@@ -1,9 +1,11 @@
 from additive.utility import *
 from scipy.stats import mode
 import numpy as np
-feature_functions_functions = {}
+feature_functions = {}
+
+
 def feature(fun):
-    feature_functions_functions[fun.__name__] = fun
+    feature_functions[fun.__name__] = fun
     return fun
 
 def ra_1d_(x):

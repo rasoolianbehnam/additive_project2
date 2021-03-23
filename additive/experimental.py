@@ -1,30 +1,17 @@
-import numpy as np
-import cv2
-from sklearn.cluster import KMeans
-from scipy import optimize
-from scipy import sqrt
-from matplotlib.patches import Ellipse
-from matplotlib.pyplot import *
-from sklearn.linear_model import LinearRegression
 import collections
 import os
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import cv2
-import pickle
-import collections
-import seaborn as sns
-import glob
-from matplotlib.pyplot import *
-from os.path import basename, splitext
-import dask
-from dask import bag, compute, delayed
-from dask.distributed import Client
-import joblib
-from multiprocessing import Pool
-
 from collections import namedtuple
+
+import cv2
+import joblib
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib.patches import Ellipse
+from matplotlib.pyplot import *
+from scipy import optimize
+from sklearn.cluster import KMeans
+from sklearn.linear_model import LinearRegression
+
 Arg = namedtuple('Arg', 'meta value')
 Params = namedtuple('Params', 'name, variation, fun, extra')
 
@@ -77,7 +64,7 @@ def adjust_tilt(img, n_jobs):
     X = np.array(poinst).T
     model = LinearRegression(n_jobs=n_jobs, normalize=True)
     model.fit(X, y)
-    poinst = np.where(img > -10)
+    poinst = np.where(img == img)
     y = img[poinst]
     X = np.array(poinst).T   
     y_pred = model.predict(X)
@@ -256,7 +243,7 @@ class Fit_circle():
         
     def calc_R(self, xc, yc):
         """ calculate the distance of each 2D points from the center (xc, yc) """
-        return sqrt((self.x_t-xc)**2 + (self.y_t-yc)**2)
+        return np.sqrt((self.x_t-xc)**2 + (self.y_t-yc)**2)
     def f_2(self, c):
             """ calculate the algebraic distance between the data points and the mean circle centered at c=(xc, yc) """
             cx, cy, r = c
