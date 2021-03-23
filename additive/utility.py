@@ -18,9 +18,7 @@ import shutil
 from dask import bag
 import matplotlib.pyplot as plt
 import sh
-
 dwget = delayed(sh.wget)
-
 
 def dfe(p):
     d = os.path.dirname(p) + "/"
