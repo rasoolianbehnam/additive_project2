@@ -82,7 +82,6 @@ def download_from_dict(links_and_names, output_dir, nthreads=2):
     with dask.config.set(pool=ThreadPool(nthreads)):
         compute(out)
 
-
 def extract_array_from_csv(file):
     d, f, e = dfe(file)
     # return joblib.dump(x.values, d+f+'.pd')

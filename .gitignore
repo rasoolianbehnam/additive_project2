@@ -36,8 +36,6 @@ docs/_build/
 #data
 data/
 
-#
-
 *png
 *pdf
 *html
