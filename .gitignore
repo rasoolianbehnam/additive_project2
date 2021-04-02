@@ -35,5 +35,11 @@ docs/_build/
 
 #data
 data/
-html/
-jupyter/
+
+#
+
+*png
+*pdf
+*html
+*ipynb_checkpoints
+*dask-worker-space
