@@ -1,4 +1,4 @@
-name: additive
+name: surface-roughness
 channels: !!python/tuple
   - anaconda
   - nodefaults
@@ -19,7 +19,8 @@ dependencies:
   - pip:
     - pathos
     - joblib
+    - requests
     - statsmodels
     - flatten_dict
-    - sh
+    - functional-pipeline
     - "--editable=."
