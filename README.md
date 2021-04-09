@@ -6,4 +6,6 @@ cd additive_project2
 conda env create --force
 
 conda activate surface-roughness
+
+jupyter notebook
 ```
